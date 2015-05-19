@@ -2,11 +2,15 @@ FROM centos:centos6
 MAINTAINER Alexey Wasilyev <awasilyev@qubell.com>
 
 ADD mongo.repo /etc/yum.repos.d/mongodb.repo
+ADD chromium-el6.repo /etc/yum.repos.d/chromium-el6.repo
 RUN yum install -y epel-release centos-release-SCL && \
-    yum install -y java-1.7.0-openjdk openssh-server curl git tar sudo make patch gcc gcc-c++ python-setuptools bzip2 mongodb-org which java-1.7.0-openjdk-devel python27 rpm-build wget nodejs-0.10.33 && \
+    yum install -y java-1.7.0-openjdk openssh-server curl git tar sudo make patch gcc gcc-c++ python-setuptools bzip2 mongodb-org which java-1.7.0-openjdk-devel python27 rpm-build wget nodejs-0.10.33 Xvfb && \
     yum localinstall -y 'https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.3/rabbitmq-server-3.5.3-1.noarch.rpm' && \
     yum localinstall -y 'https://packagecloud.io/chef/stable/download?distro=6&filename=chefdk-0.2.2-1.x86_64.rpm' && \
+    yum localinstall -y 'http://install.linux.ncsu.edu/pub/yum/itecs/public/chromium/rhel6/noarch/chromium-release-1.1-1.noarch.rpm' && \
+    yum install -y chromium && \
     yum clean all
+RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 
 RUN adduser jenkins && \
     sed -i 's/jenkins:!!/jenkins:np/' /etc/shadow && \
