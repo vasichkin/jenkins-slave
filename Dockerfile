@@ -34,6 +34,8 @@ RUN chmod +x /usr/bin/sbt && \
     mkdir -p /usr/share/sbt-launcher-packaging/bin && \
     ln -s /usr/bin/sbt-launch.jar /usr/share/sbt-launcher-packaging/bin/sbt-launch.jar
 
+ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
+
 EXPOSE 22
 ADD supervisord.conf /etc/supervisord.conf
 RUN mkdir -p /data/db /var/log/supervisor
