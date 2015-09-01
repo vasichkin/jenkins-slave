@@ -5,7 +5,7 @@ ADD mongo.repo /etc/yum.repos.d/mongodb.repo
 
 RUN yum install -y epel-release centos-release-SCL && \
     yum install -y java-1.7.0-openjdk openssh-server curl git tar sudo make patch gcc gcc-c++ python-setuptools bzip2 && \
-    yum install -y mongodb-org which java-1.7.0-openjdk-devel python27 rpm-build http-parser libuv wget nodejs Xvfb libxslt-devel libxml2-devel python-devel python-pip && \ 
+    yum install -y mongodb-org which java-1.7.0-openjdk-devel python27 rpm-build http-parser libuv wget nodejs npm Xvfb libxslt-devel libxml2-devel python-devel python-pip && \ 
     yum install -y docker-io --enablerepo=epel-testing docker-io && \
     yum localinstall -y 'https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.3/rabbitmq-server-3.5.3-1.noarch.rpm' && \
     yum localinstall -y 'https://packagecloud.io/chef/stable/download?distro=6&filename=chefdk-0.3.4-1.x86_64.rpm' && \
