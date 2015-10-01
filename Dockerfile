@@ -35,6 +35,9 @@ RUN chmod +x /usr/bin/sbt && \
     mkdir -p /usr/share/sbt-launcher-packaging/bin && \
     ln -s /usr/bin/sbt-launch.jar /usr/share/sbt-launcher-packaging/bin/sbt-launch.jar
 
+ADD rpmbuild /usr/local/bin/
+RUN chmod +x /usr/local/bin/rpmbuild
+
 ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
 
 EXPOSE 22
