@@ -1,16 +1,8 @@
-# Is the location of the SBT launcher JAR file.
-LAUNCHJAR="/usr/bin/sbt-launch.jar"
+#!/bin/bash
 
-# Customization: this may define JAVA_OPTS.
-SBTCONF=$HOME/.sbtconfig
-if [ -f "$SBTCONF" ]; then
-    . $SBTCONF
-fi
-if [ -z "$JAVA_OPTS" ]; then
-    # Ensure enough heap space is created for sbt.  These settings are
-    # the default settings from Typesafe's sbt wrapper.
-    JAVA_OPTS="-XX:+CMSClassUnloadingEnabled -Xms1536m -Xmx4096m -XX:MaxPermSize=384m -XX:ReservedCodeCacheSize=192m -Dfile.encoding=UTF8"
-fi
+JAVA_VERSION=$(sed -ne 's/java.version=\(.*\)/\1/p' project/build.properties 2>/dev/null || echo "1.7")
+JAVA_HOME=$(find /usr/lib/jvm -name "java-*-${JAVA_VERSION:-1.7}*" | sort | tail -n 1)
 
-# Assume java is already in the shell path.
-exec java $JAVA_OPTS -jar "$LAUNCHJAR" "$@"
+export JAVA_HOME
+
+/usr/bin/sbt -java-home "$JAVA_HOME" "$@"
