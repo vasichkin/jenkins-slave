@@ -39,6 +39,8 @@ RUN chmod +x /usr/local/bin/sbt
 
 ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
 
+RUN echo -e "Host github.com\n  StrictHostKeyChecking no\n  UserKnownHostsFile=/dev/null" >>/etc/ssh/ssh_config
+
 EXPOSE 22
 ADD supervisord.conf /etc/supervisord.conf
 RUN mkdir -p /data/db /var/log/supervisor
