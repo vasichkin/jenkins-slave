@@ -9,7 +9,7 @@ RUN yum install -y epel-release centos-release-SCL && \
                    java-1.7.0-openjdk-devel java-1.8.0-openjdk-devel sbt \
                    openssh-server curl git tar sudo make patch gcc gcc-c++ python-setuptools bzip2 \
                    mongodb-org which python27 rpm-build http-parser libuv wget nodejs npm Xvfb libxslt-devel libxml2-devel python-devel python-pip \ 
-                   docker-io && \
+                   docker-io python-lxml python-unittest2 && \
     yum localinstall -y 'https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.3/rabbitmq-server-3.5.3-1.noarch.rpm' && \
     yum localinstall -y 'https://packagecloud.io/chef/stable/download?distro=6&filename=chefdk-0.3.4-1.x86_64.rpm' && \
     yum localinstall -y 'http://downloads.onrooby.com/chromium/rpms/chromium-31.0.1650.63-1.el6.x86_64.rpm' && \
