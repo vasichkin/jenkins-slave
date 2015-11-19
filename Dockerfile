@@ -15,7 +15,7 @@ RUN yum install -y epel-release centos-release-SCL && \
     yum localinstall -y 'http://downloads.onrooby.com/chromium/rpms/chromium-31.0.1650.63-1.el6.x86_64.rpm' && \
     yum clean all
 
-RUN pip install awscli
+RUN pip install awscli ansible
 
 RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome && \
     ln -s /opt/chromium-browser/chromedriver /usr/bin/chromedriver
