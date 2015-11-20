@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos7
 MAINTAINER Alexey Wasilyev <awasilyev@qubell.com>
 
 ADD mongo.repo /etc/yum.repos.d/mongodb.repo
@@ -11,8 +11,8 @@ RUN yum install -y epel-release centos-release-SCL && \
                    mongodb-org which python27 rpm-build http-parser libuv wget nodejs npm Xvfb libxslt-devel libxml2-devel python-devel python-pip \ 
                    docker-io python-lxml python-unittest2 python-paramiko python-setuptools python-boto python-mock python-nose && \
     yum localinstall -y 'https://www.rabbitmq.com/releases/rabbitmq-server/v3.5.3/rabbitmq-server-3.5.3-1.noarch.rpm' && \
-    yum localinstall -y 'https://packagecloud.io/chef/stable/download?distro=6&filename=chefdk-0.3.4-1.x86_64.rpm' && \
-    yum localinstall -y 'http://downloads.onrooby.com/chromium/rpms/chromium-31.0.1650.63-1.el6.x86_64.rpm' && \
+    yum localinstall -y 'https://opscode-omnibus-packages.s3.amazonaws.com/el/7/x86_64/chefdk-0.10.0-1.el7.x86_64.rpm' && \
+    yum localinstall -y 'http://downloads.onrooby.com/chromium/rpms/chromium-browser-38.0.2125.104-1.el7.centos.x86_64.rpm' && \
     yum clean all
 
 RUN pip install awscli ansible
@@ -45,6 +45,6 @@ RUN mkdir -p /data/db /var/log/supervisor
 
 # fix https://github.com/ansible/ansible-modules-core/issues/2043
 # remove after ansible-1.9.5 released
-RUN curl https://raw.githubusercontent.com/ansible/ansible-modules-core/64b8596250e58a55eee8f2d4323d35ca32a8cd53/cloud/docker/docker.py > /tmp/docker.py && mv /tmp/docker.py /usr/lib/python2.6/site-packages/ansible/modules/core/cloud/docker/docker.py
+RUN curl https://raw.githubusercontent.com/ansible/ansible-modules-core/64b8596250e58a55eee8f2d4323d35ca32a8cd53/cloud/docker/docker.py > /tmp/docker.py && mv /tmp/docker.py /usr/lib/python2.7/site-packages/ansible/modules/core/cloud/docker/docker.py
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
