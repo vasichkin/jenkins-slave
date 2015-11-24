@@ -45,6 +45,6 @@ RUN mkdir -p /data/db /var/log/supervisor
 
 # fix https://github.com/ansible/ansible-modules-core/issues/2043
 # remove after ansible-1.9.5 released
-RUN curl https://raw.githubusercontent.com/ansible/ansible-modules-core/64b8596250e58a55eee8f2d4323d35ca32a8cd53/cloud/docker/docker.py > /tmp/docker.py && mv /tmp/docker.py /usr/lib/python2.7/site-packages/ansible/modules/core/cloud/docker/docker.py
+ADD https://raw.githubusercontent.com/ansible/ansible-modules-core/devel/cloud/docker/docker.py /usr/lib/python2.7/site-packages/ansible/modules/core/cloud/docker/docker.py
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
